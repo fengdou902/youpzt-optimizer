@@ -1,14 +1,14 @@
-=== youpzt-optimizer ===
-Contributors:ZhaoJunfeng3671
-Donate link: http://www.youpzt.com
-Tags: youpzt-optimizer,optiimize,optiimize database,youpzt
-Requires at least: 3.0.1
-Tested up to: 4.3
-Stable tag: 1.3
+=== 项目信息 ===
+插件名: youpzt-optimizer
+Contributors:ZhaoJunfeng
+URL: http://www.youpzt.com
+标签: youpzt-optimizer,optiimize,optiimize database,youpzt
+WordPress最低版本: 3.0.1
+WordPress最高版本: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-These are a set of switches. You can optimize your site and the wordpress database by it.
+有一些开关设置，你可以通过它进行网站的优化和数据库优化
 
 == Description ==
 网站优化工具是由优品主题站长出的一款专为wordpress站点优化的一款插件，包括系统的加载优化和数据库优化等！
@@ -46,11 +46,11 @@ These are a set of switches. You can optimize your site and the wordpress databa
 * 控制板订阅缓存
 
 
-== Installation ==
+== 安装 ==
 
-1. Upload the plugin folder to the "/wp-content/plugins/" directory of your WordPress site,
-2. Activate the plugin through the 'Plugins' menu in WordPress,
-3. Visit the "Settings \ youpzt-optimizer Setting" administration page to setup the plugin. 
+1.上传插件目录 "/wp-content/plugins/" 的wordpress站点路径
+2. 在wordpress中通过插件菜单激活这个插件,
+3. 管理员访问后台菜单的"网站优化工具"栏目  
 
 also:
 
@@ -58,7 +58,7 @@ also:
 2. 然后在设置页面"加速开关"，"数据库优化"，"功能设置"进行网站优化设置即可。
 3. 卸载也同样方便，可设置卸载插件同时删除配置数据！
 
-== Frequently Asked Questions ==
+== 常见问答 ==
 
 = 加速开关可以对网站速度加速吗? =
 
@@ -67,11 +67,6 @@ also:
 = 数据库优化都有哪些? =
 
 数据库优化功能包括：删除“修订版本”“草稿”“自动草稿”“待审评论”“垃圾评论”“回收站评论”“孤立的文章元信息”“孤立的评论元信息”“孤立的关系信息”“控制板订阅缓存”这些无用的数据，可以逐项删除也可以点击“删除所有”按钮一键删除所有无用数据，但需谨慎操作。
-
-== Screenshots ==
-
-1. optimize switches.
-2. optimize wordpress database.
 
 == Changelog ==
 1.3.2:
