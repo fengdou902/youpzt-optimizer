@@ -56,7 +56,7 @@ function optimizer_go_subscribe($wp){
 			"_form_"=>"subscriptionFront"
 		);
 		
-		echo https_post("http://www.blhere.com?token=get_subscribe",$subscribe_code);
+		echo https_post("http://www.youpzt.com?token=get_subscribe",$subscribe_code);
 		exit;
 	}elseif($data_token=='cancel_subscribe'){
 		global $current_user;

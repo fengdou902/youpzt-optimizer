@@ -27,7 +27,6 @@ function youpzt_optimize_settings() {
 //check update version 
 function ypzt_optimize_showAdminMessages()
 {
-
 	 $check_obj=check_youpzt_plugins_optimize();
 	 $check_version=$check_obj->version;
 		if($check_version==''){
