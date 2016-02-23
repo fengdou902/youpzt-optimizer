@@ -4,7 +4,7 @@
 	<a href="<?php echo get_optmenupage_url('setting');?>" class="nav-tab">功能设置</a>
 </h2>
 <div class="wrap">
-	<h2><?php _e('数据库优化', 'optimize_switch'); ?><span class="info"><abbr title="全面开启数据库清理优化" rel="tooltip">说明</abbr></span></h2>
+	
 <?php
 
 global $wpdb;
@@ -16,46 +16,41 @@ function wp_clean_up($type){
 	switch($type){
 		case "revision":
 			$wcu_sql = "DELETE FROM $wpdb->posts WHERE post_type = 'revision'";
-			$wpdb->query($wcu_sql);
 			break;
 		case "draft":
 			$wcu_sql = "DELETE FROM $wpdb->posts WHERE post_status = 'draft'";
-			$wpdb->query($wcu_sql);
 			break;
 		case "autodraft":
 			$wcu_sql = "DELETE FROM $wpdb->posts WHERE post_status = 'auto-draft'";
-			$wpdb->query($wcu_sql);
 			break;
 		case "moderated":
 			$wcu_sql = "DELETE FROM $wpdb->comments WHERE comment_approved = '0'";
-			$wpdb->query($wcu_sql);
 			break;
 		case "spam":
 			$wcu_sql = "DELETE FROM $wpdb->comments WHERE comment_approved = 'spam'";
-			$wpdb->query($wcu_sql);
 			break;
 		case "trash":
 			$wcu_sql = "DELETE FROM $wpdb->comments WHERE comment_approved = 'trash'";
-			$wpdb->query($wcu_sql);
 			break;
 		case "postmeta":
 			$wcu_sql = "DELETE pm FROM $wpdb->postmeta pm LEFT JOIN $wpdb->posts wp ON wp.ID = pm.post_id WHERE wp.ID IS NULL";
 			//$wcu_sql = "DELETE FROM $wpdb->postmeta WHERE NOT EXISTS ( SELECT * FROM $wpdb->posts WHERE $wpdb->postmeta.post_id = $wpdb->posts.ID )";
-			$wpdb->query($wcu_sql);
 			break;
 		case "commentmeta":
 			$wcu_sql = "DELETE FROM $wpdb->commentmeta WHERE comment_id NOT IN (SELECT comment_id FROM $wpdb->comments)";
-			$wpdb->query($wcu_sql);
+			break;
+		case "usermeta":
+			$wcu_sql = "DELETE FROM $wpdb->usermeta WHERE user_id NOT IN (SELECT ID FROM $wpdb->users)";
 			break;
 		case "relationships":
 			$wcu_sql = "DELETE FROM $wpdb->term_relationships WHERE term_taxonomy_id=1 AND object_id NOT IN (SELECT id FROM $wpdb->posts)";
-			$wpdb->query($wcu_sql);
 			break;
 		case "feed":
 			$wcu_sql = "DELETE FROM $wpdb->options WHERE option_name LIKE '_site_transient_browser_%' OR option_name LIKE '_site_transient_timeout_browser_%' OR option_name LIKE '_transient_feed_%' OR option_name LIKE '_transient_timeout_feed_%'";
-			$wpdb->query($wcu_sql);
 			break;
 	}
+
+	$wpdb->query($wcu_sql);
 }
 
 function wp_clean_up_count($type){
@@ -63,46 +58,40 @@ function wp_clean_up_count($type){
 	switch($type){
 		case "revision":
 			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->posts WHERE post_type = 'revision'";
-			$count = $wpdb->get_var($wcu_sql);
 			break;
 		case "draft":
 			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->posts WHERE post_status = 'draft'";
-			$count = $wpdb->get_var($wcu_sql);
 			break;
 		case "autodraft":
 			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->posts WHERE post_status = 'auto-draft'";
-			$count = $wpdb->get_var($wcu_sql);
 			break;
 		case "moderated":
 			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->comments WHERE comment_approved = '0'";
-			$count = $wpdb->get_var($wcu_sql);
 			break;
 		case "spam":
 			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->comments WHERE comment_approved = 'spam'";
-			$count = $wpdb->get_var($wcu_sql);
 			break;
 		case "trash":
 			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->comments WHERE comment_approved = 'trash'";
-			$count = $wpdb->get_var($wcu_sql);
 			break;
 		case "postmeta":
 			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->postmeta pm LEFT JOIN $wpdb->posts wp ON wp.ID = pm.post_id WHERE wp.ID IS NULL";
 			//$wcu_sql = "SELECT COUNT(*) FROM $wpdb->postmeta WHERE NOT EXISTS ( SELECT * FROM $wpdb->posts WHERE $wpdb->postmeta.post_id = $wpdb->posts.ID )";
-			$count = $wpdb->get_var($wcu_sql);
 			break;
 		case "commentmeta":
-			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->commentmeta WHERE comment_id NOT IN (SELECT comment_id FROM $wpdb->comments)";
-			$count = $wpdb->get_var($wcu_sql);
+			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->commentmeta WHERE comment_id NOT IN (SELECT comment_ID FROM $wpdb->comments)";
+			break;
+		case "usermeta":
+			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->usermeta WHERE user_id NOT IN (SELECT ID FROM $wpdb->users)";
 			break;
 		case "relationships":
 			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->term_relationships WHERE term_taxonomy_id=1 AND object_id NOT IN (SELECT id FROM $wpdb->posts)";
-			$count = $wpdb->get_var($wcu_sql);
 			break;
 		case "feed":
 			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->options WHERE option_name LIKE '_site_transient_browser_%' OR option_name LIKE '_site_transient_timeout_browser_%' OR option_name LIKE '_transient_feed_%' OR option_name LIKE '_transient_timeout_feed_%'";
-			$count = $wpdb->get_var($wcu_sql);
 			break;
 	}
+	$count = $wpdb->get_var($wcu_sql);
 	return $count;
 }
 
@@ -120,52 +109,61 @@ function wp_clean_up_optimize(){
 
 	if(isset($_POST['wp_clean_up_revision'])){
 		wp_clean_up('revision');
-		$wcu_message = __("All revisions deleted!","youpzt");
+		$wcu_message = __("所有的修订版本已经被删除!","youpzt");
 	}
 
 	if(isset($_POST['wp_clean_up_draft'])){
 		wp_clean_up('draft');
-		$wcu_message = __("All drafts deleted!","youpzt");
+		$wcu_message = __("所有的手动草稿已经被删除!","youpzt");
 	}
 
 	if(isset($_POST['wp_clean_up_autodraft'])){
 		wp_clean_up('autodraft');
-		$wcu_message = __("All autodrafts deleted!","youpzt");
+		$wcu_message = __("所有的自动草稿已经被删除!","youpzt");
 	}
 	
 	if(isset($_POST['wp_clean_up_moderated'])){
 		wp_clean_up('moderated');
-		$wcu_message = __("All moderated comments deleted!","youpzt");
+		$wcu_message = __("所有的待审评论已经被删除!","youpzt");
 	}
 
 	if(isset($_POST['wp_clean_up_spam'])){
 		wp_clean_up('spam');
-		$wcu_message = __("All spam comments deleted!","youpzt");
+		$wcu_message = __("所有的垃圾评论已经被删除!","youpzt");
 	}
 
 	if(isset($_POST['wp_clean_up_trash'])){
 		wp_clean_up('trash');
-		$wcu_message = __("All trash comments deleted!","youpzt");
+		$wcu_message = __("所有的回收站评论已经被删除!","youpzt");
 	}
 
 	if(isset($_POST['wp_clean_up_postmeta'])){
 		wp_clean_up('postmeta');
-		$wcu_message = __("All orphan postmeta deleted!","youpzt");
+		$wcu_message = __("所有的文章孤立元信息已经删除!","youpzt");
 	}
 
 	if(isset($_POST['wp_clean_up_commentmeta'])){
 		wp_clean_up('commentmeta');
-		$wcu_message = __("All orphan commentmeta deleted!","youpzt");
+		$wcu_message = __("所有的评论孤立元信息已经删除!","youpzt");
+	}
+
+	if(isset($_POST['wp_clean_up_usermeta'])){
+		wp_clean_up('usermeta');
+		$wcu_message = __("所有的用户孤立元信息已经删除!","youpzt");
+	}
+		if(isset($_POST['wp_clean_up_termmeta'])){
+		wp_clean_up('termmeta');
+		$wcu_message = __("所有的分类孤立元信息已经删除!","youpzt");
 	}
 
 	if(isset($_POST['wp_clean_up_relationships'])){
 		wp_clean_up('relationships');
-		$wcu_message = __("All orphan relationships deleted!","youpzt");
+		$wcu_message = __("所有的分类关系数据已经删除!","youpzt");
 	}
 
 	if(isset($_POST['wp_clean_up_feed'])){
 		wp_clean_up('feed');
-		$wcu_message = __("All dashboard transient feed deleted!","youpzt");
+		$wcu_message = __("所有的订阅缓存已经删除!","youpzt");
 	}
 
 	if(isset($_POST['wp_clean_up_all'])){
@@ -177,9 +175,11 @@ function wp_clean_up_optimize(){
 		wp_clean_up('trash');
 		wp_clean_up('postmeta');
 		wp_clean_up('commentmeta');
+		wp_clean_up('usermeta');
+		wp_clean_up('termmeta');
 		wp_clean_up('relationships');
 		wp_clean_up('feed');
-		$wcu_message = __("All redundant data deleted!","youpzt");
+		$wcu_message = __("已经删除了所有的垃圾数据!","youpzt");
 	}
 
 	if(isset($_POST['wp_clean_up_optimize'])){
@@ -193,8 +193,11 @@ function wp_clean_up_optimize(){
 ?>
 
 <!-- Database Information -->
-<div class="wrap">
-<table class="widefat" style="width:419px;">
+<div class="wrap1">
+<div class="oh">
+	<div class="fl" style="width:419px;">
+	<h2><?php _e('数据库优化', 'optimize_switch'); ?><span class="info"><abbr title="全面开启数据库清理优化" rel="tooltip">说明</abbr></span></h2>
+	<table class="widefat" >
 	<thead>
 		<tr>
 			<th scope="col"><?php _e('类型','youpzt'); ?></th>
@@ -315,9 +318,37 @@ function wp_clean_up_optimize(){
 				</form>
 			</td>
 		</tr>
+		<tr>
+			<td class="column-name">
+				<?php _e('孤立的用户元信息','youpzt'); ?>
+			</td>
+			<td class="column-name">
+				<?php echo wp_clean_up_count('usermeta'); ?>
+			</td>
+			<td class="column-name">
+				<form action="" method="post">
+					<input type="hidden" name="wp_clean_up_usermeta" value="usermeta" />
+					<input type="submit" class="<?php if(wp_clean_up_count('usermeta')>0){echo 'button-primary';}else{echo 'button';} ?>" value="<?php _e('删除','youpzt'); ?>" />
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td class="column-name">
+				<?php _e('孤立的分类元信息','youpzt'); ?>
+			</td>
+			<td class="column-name">
+				<?php echo wp_clean_up_count('termmeta'); ?>
+			</td>
+			<td class="column-name">
+				<form action="" method="post">
+					<input type="hidden" name="wp_clean_up_termmeta" value="termmeta" />
+					<input type="submit" class="<?php if(wp_clean_up_count('termmeta')>0){echo 'button-primary';}else{echo 'button';} ?>" value="<?php _e('删除','youpzt'); ?>" />
+				</form>
+			</td>
+		</tr>
 		<tr class="alternate">
 			<td class="column-name">
-				<?php _e('孤立的关系信息','youpzt'); ?>
+				<?php _e('孤立的分类关系信息','youpzt'); ?>
 			</td>
 			<td class="column-name">
 				<?php echo wp_clean_up_count('relationships'); ?>
@@ -351,38 +382,43 @@ function wp_clean_up_optimize(){
 	<input type="submit" class="button-primary" value="<?php _e('删除所有','youpzt'); ?>" /><span class="info"><abbr title="删除所有会删除所有数据库垃圾，请确认后操作" rel="tooltip">谨慎操作</abbr></span>
 </form>
 </p>
-	<h3><?php _e('数据库信息', 'youpzt-dbmanager'); ?></h3>
-	<table class="widefat">
-		<thead>
-			<tr>
-				<th><?php _e('数据库', 'youpzt-dbmanager'); ?></th>
-				<th><?php _e('属性值', 'youpzt-dbmanager'); ?></th>
-			</tr>
-		</thead>
-		<tr>
-			<td><?php _e('数据库主机', 'youpzt-dbmanager'); ?></td>
-			<td><?php echo DB_HOST; ?></td>
-		</tr>
-		<tr class="alternate">
-			<td><?php _e('数据库名称', 'youpzt-dbmanager'); ?></td>
-			<td><?php echo DB_NAME; ?></td>
-		</tr>
-		<tr>
-			<td><?php _e('数据库用户名', 'youpzt-dbmanager'); ?></td>
-			<td><?php echo DB_USER; ?></td>
-		</tr>
-		<tr class="alternate">
-			<td><?php _e('数据库类型', 'youpzt-dbmanager'); ?></td>
-			<td>MYSQL</td>
-		</tr>
-		<tr>
-			<td><?php _e('数据库版本', 'youpzt-dbmanager'); ?></td>
-			<td>v<?php echo $sqlversion; ?></td>
-		</tr>
-	</table>
 </div>
 
-<div class="wrap">
+		<div class="oh fr" style="width:400px;">
+			<h3><?php _e('数据库信息', 'youpzt-dbmanager'); ?></h3>
+			<table class="widefat" >
+				<thead>
+					<tr>
+						<th><?php _e('数据库', 'youpzt-dbmanager'); ?></th>
+						<th><?php _e('属性值', 'youpzt-dbmanager'); ?></th>
+					</tr>
+				</thead>
+				<tr>
+					<td><?php _e('数据库主机', 'youpzt-dbmanager'); ?></td>
+					<td><?php echo DB_HOST; ?></td>
+				</tr>
+				<tr class="alternate">
+					<td><?php _e('数据库名称', 'youpzt-dbmanager'); ?></td>
+					<td><?php echo DB_NAME; ?></td>
+				</tr>
+				<tr>
+					<td><?php _e('数据库用户名', 'youpzt-dbmanager'); ?></td>
+					<td><?php echo DB_USER; ?></td>
+				</tr>
+				<tr class="alternate">
+					<td><?php _e('数据库类型', 'youpzt-dbmanager'); ?></td>
+					<td>MYSQL</td>
+				</tr>
+				<tr>
+					<td><?php _e('数据库版本', 'youpzt-dbmanager'); ?></td>
+					<td>v<?php echo $sqlversion; ?></td>
+				</tr>
+			</table>
+		</div>
+
+</div>
+<hr/>
+<div class="wrap_sql_tab">
 	<h3><?php _e('数据库表信息', 'youpzt'); ?></h3>
 	<br style="clear" />
 	<table class="widefat">

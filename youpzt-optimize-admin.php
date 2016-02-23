@@ -74,7 +74,7 @@ function youpzt_optimize_page(){
 <div class="wrap">
 <h2>网站优化工具<?php echo WP_YPOPTIMIZE_VERSION;?></h2>	
 
-<p class="f13"><a href="http://www.youpzt.com/267.html" target="_blank">>>问题反馈</a></p>
+<p class="f13"><a href="http://www.youpzt.com/267.html" target="_blank">>>问题反馈</a>|官方QQ群：<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=dbf65e2fe706d4a5f798fb98158587c450c30d8df8444fcfe1409c537c828e0b"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="WordPress优品主题" title="WordPress优品主题" style="width:auto;"></a></p>
 <?php	
 $switch_action=isset($_GET['tab'])? $_GET['tab']:'general';
 //切换

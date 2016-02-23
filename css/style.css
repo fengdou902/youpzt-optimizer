@@ -1,5 +1,8 @@
 .f12{font-size:12px;}
 .f13{font-size:13px;}
+.oh{overflow: hidden;}
+.fl{float:left;}
+.fr{float: right;}
 .color-red{color:red;}
 .color-6{color:#666;}
 .wrap{padding:10px;background-color:#fff;}
