@@ -9,22 +9,22 @@ function youpzt_optimize_admin(){
 function menu_youpzt_optimize_updatetip(){
   global $menu,$submenu;
 
-  	 $check_obj=check_youpzt_plugins_optimize();
+  $check_obj=check_youpzt_plugins_optimize();
 	 $check_version=$check_obj->version;
-  if (current_user_can( 'manage_options')&&$check_version!=WP_YPOPTIMIZE_VERSION) {
+  if (current_user_can('manage_options')&&$check_version!=WP_YPOPTIMIZE_VERSION) {
     $menu[73][0].= ' <span class="update-plugins update-youpzt-messages"><span class="update-count">新</span></span>';
   }
   
 }
 function youpzt_optimize_scripts(){	
-	$optimize_get = isset($_GET['page']) ? $_GET['page'] : '';
+	$optimize_get = isset($_GET['page'])? $_GET['page']:'';
 	if($optimize_get=='optimize_page'){
-		wp_enqueue_style('optimize-normalize',WP_YPOPTIMIZE_PLUGIN_URL.'/css/normalize.css', array(), WP_YPOPTIMIZE_VERSION);
-		wp_enqueue_style('optimize-checkbox-button',WP_YPOPTIMIZE_PLUGIN_URL.'/css/checkbox-button.css', array(), WP_YPOPTIMIZE_VERSION);
-		wp_enqueue_style('style',WP_YPOPTIMIZE_PLUGIN_URL.'/css/style.css', array(), WP_YPOPTIMIZE_VERSION);
-		
-		wp_enqueue_script( 'jquery2-1',WP_YPOPTIMIZE_PLUGIN_URL.'/js/jquery2.1.min.js', array(), WP_YPOPTIMIZE_VERSION);
-		wp_enqueue_script( 'optimize-main',WP_YPOPTIMIZE_PLUGIN_URL.'/js/main.js', array('jquery2-1'), WP_YPOPTIMIZE_VERSION);
+				wp_enqueue_style('optimize-normalize',WP_YPOPTIMIZE_PLUGIN_URL.'/css/normalize.css', array(), WP_YPOPTIMIZE_VERSION);
+				wp_enqueue_style('optimize-checkbox-button',WP_YPOPTIMIZE_PLUGIN_URL.'/css/checkbox-button.css', array(), WP_YPOPTIMIZE_VERSION);
+				wp_enqueue_style('style',WP_YPOPTIMIZE_PLUGIN_URL.'/css/style.css', array(), WP_YPOPTIMIZE_VERSION);
+				
+				wp_enqueue_script( 'jquery2-1',WP_YPOPTIMIZE_PLUGIN_URL.'/js/jquery2.1.min.js', array(), WP_YPOPTIMIZE_VERSION);
+				wp_enqueue_script( 'optimize-main',WP_YPOPTIMIZE_PLUGIN_URL.'/js/main.js', array('jquery2-1'), WP_YPOPTIMIZE_VERSION);
 	}
 }
 
