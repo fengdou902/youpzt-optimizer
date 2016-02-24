@@ -1,9 +1,20 @@
 <?php 
 add_action('admin_menu', 'youpzt_optimize_admin');
+add_action( 'admin_head','menu_youpzt_optimize_updatetip');
 add_action('admin_menu', 'youpzt_optimize_scripts');
 function youpzt_optimize_admin(){
 	add_menu_page('youpzt-optimizer', '网站优化工具','edit_private_posts','optimize_page', 'youpzt_optimize_page','dashicons-hammer',73);
 	add_action( 'admin_init', 'youpzt_optimize_settings' );
+}
+function menu_youpzt_optimize_updatetip(){
+  global $menu,$submenu;
+
+  	 $check_obj=check_youpzt_plugins_optimize();
+	 $check_version=$check_obj->version;
+  if (current_user_can( 'manage_options')&&$check_version!=WP_YPOPTIMIZE_VERSION) {
+    $menu[73][0].= ' <span class="update-plugins update-youpzt-messages"><span class="update-count">新</span></span>';
+  }
+  
 }
 function youpzt_optimize_scripts(){	
 	$optimize_get = isset($_GET['page']) ? $_GET['page'] : '';
@@ -74,7 +85,7 @@ function youpzt_optimize_page(){
 <div class="wrap">
 <h2>网站优化工具<?php echo WP_YPOPTIMIZE_VERSION;?></h2>	
 
-<p class="f13"><a href="http://www.youpzt.com/267.html" target="_blank">>>问题反馈</a>|官方QQ群：<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=dbf65e2fe706d4a5f798fb98158587c450c30d8df8444fcfe1409c537c828e0b"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="WordPress优品主题" title="WordPress优品主题" style="width:auto;"></a></p>
+<p class="f13">官方QQ群：519708972  <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=dbf65e2fe706d4a5f798fb98158587c450c30d8df8444fcfe1409c537c828e0b"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="WordPress优品主题" title="WordPress优品主题" style="width:auto;"></a>，进行问题交流与反馈</p>
 <?php	
 $switch_action=isset($_GET['tab'])? $_GET['tab']:'general';
 //切换
