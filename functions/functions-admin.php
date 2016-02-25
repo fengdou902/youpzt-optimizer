@@ -40,13 +40,13 @@ function geturl_content($url) {
 		$url = trim($url);
 		$content = '';
 		if (extension_loaded('curl')) {
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-			curl_setopt($ch, CURLOPT_HEADER, 0);
-			$content = curl_exec($ch);
-			curl_close($ch);
+			$ch = @curl_init();
+			@curl_setopt($ch, CURLOPT_URL, $url);
+			@curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			@curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			@curl_setopt($ch, CURLOPT_HEADER, 0);
+			$content = @curl_exec($ch);
+			@curl_close($ch);
 		} else {
 			$content =@file_get_contents($url);
 		}
