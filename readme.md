@@ -48,7 +48,7 @@
 
 ###安装
 
-1.上传插件目录 "/wp-content/plugins/" 的wordpress站点路径
+1. 上传插件目录 "/wp-content/plugins/" 的wordpress站点路径
 2. 在wordpress中通过插件菜单激活这个插件,
 3. 管理员访问后台菜单的"网站优化工具"栏目  
 
