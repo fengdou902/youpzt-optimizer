@@ -1,12 +1,11 @@
 
 #WordPress优化工具youpzt-optimizer
-* 作者:ZhaoJunfeng
-*URL: http://www.youpzt.com
-*标签: youpzt-optimizer,optiimize,optiimize database,youpzt
-*WordPress最低版本: 3.0.1
-*WordPress最高版本: 4.3
-*License: GPLv2 or later
-*License URI: http://www.gnu.org/licenses/gpl-2.0.html
+* 作者:ZhaoJunfeng  
+* 官网: http://www.youpzt.com  
+* WordPress最低版本: 3.0.1  
+* WordPress最高版本: 4.3  
+* License: GPLv2 or later  
+* License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 有一些开关设置，你可以通过它进行网站的优化和数据库优化
 
