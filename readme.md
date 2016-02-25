@@ -1,6 +1,6 @@
 
 #WordPress优化工具youpzt-optimizer
-*作者:ZhaoJunfeng
+* 作者:ZhaoJunfeng
 *URL: http://www.youpzt.com
 *标签: youpzt-optimizer,optiimize,optiimize database,youpzt
 *WordPress最低版本: 3.0.1
