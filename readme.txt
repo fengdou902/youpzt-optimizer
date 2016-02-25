@@ -1,6 +1,6 @@
-=== 项目信息 ===
-插件名: youpzt-optimizer
-Contributors:ZhaoJunfeng
+
+#WordPress优化工具youpzt-optimizer
+作者:ZhaoJunfeng
 URL: http://www.youpzt.com
 标签: youpzt-optimizer,optiimize,optiimize database,youpzt
 WordPress最低版本: 3.0.1
@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 有一些开关设置，你可以通过它进行网站的优化和数据库优化
 
-<h2>== 描述 ==</h2>
+### 描述
 网站优化工具是由优品主题站长出的一款专为wordpress站点优化的一款插件，包括系统的加载优化和数据库优化等！
 官方网站：[www.youpzt.com](http://www.youpzt.com/ "优品主题")
 
