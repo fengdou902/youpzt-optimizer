@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 有一些开关设置，你可以通过它进行网站的优化和数据库优化
 
-== Description ==
+<h2>== 描述 ==</h2>
 网站优化工具是由优品主题站长出的一款专为wordpress站点优化的一款插件，包括系统的加载优化和数据库优化等！
 官方网站：[www.youpzt.com](http://www.youpzt.com/ "优品主题")
 
