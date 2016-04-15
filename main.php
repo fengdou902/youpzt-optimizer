@@ -8,7 +8,7 @@ Author: 优品主题
 Author URI: http://www.youpzt.com/
 Text Domain:WordPress全面网站优化
 */
-$plugin_version = '1.3.2';
+$plugin_version = '1.3.3';
 define('WP_YPOPTIMIZE_VERSION', $plugin_version);
 define('WP_YPOPTIMIZE_SITE_URL', site_url());
 define('WP_YPOPTIMIZE_HOME_URL', home_url());
