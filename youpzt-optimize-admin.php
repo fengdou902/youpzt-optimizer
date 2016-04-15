@@ -103,7 +103,7 @@ if($switch_action=='tables'){//数据库优化
 
 ?>
 <hr/>
-<p style="text-align:center;">&copy; <?php echo date("Y"); ?>专业WordPress建站平台， <a href="http://www.youpzt.com" target="_blank" rel="nofollow" title="WordPress优品主题建站平台">优品主题</a>(查看更多)</p>
+<p style="text-align:center;">&copy; <?php echo date("Y"); ?>专业WordPress高端定制平台， <a href="http://www.youpzt.com" target="_blank" rel="nofollow" title="WordPress优品主题建站平台">优品主题</a>(查看更多)</p>
 
 </div>
 

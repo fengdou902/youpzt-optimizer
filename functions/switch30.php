@@ -66,6 +66,10 @@ if(is_admin()){
 			add_filter( 'pre_option_link_manager_enabled', '__return_true');
 
 	}
+		//彻底禁止WordPress缩略图
+	if (isset($youpzt_optimize_options['close_thumb_size']) && $youpzt_optimize_options['close_thumb_size']==true){
+		add_filter( 'add_image_size', create_function( '', 'return 1;' ) );
+	}
 }else{
 	// Don't display the version of WP - wp-generator
 	if (isset($youpzt_optimize_options['wp-generator']) && $youpzt_optimize_options['wp-generator'] ==true){
@@ -104,50 +108,38 @@ if(is_admin()){
 	
 }
 //replace google fonts
-if (isset($youpzt_optimize_options['google-font']) && $youpzt_optimize_options['google-font']==2){
-	
-	function youpzt_replace_open_sans(){
-	  wp_deregister_style('open-sans');
-	  wp_register_style( 'open-sans', '//fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,300,400,600' );
-	  if(is_admin()) wp_enqueue_style( 'open-sans');
-	}
-	add_action( 'init', 'youpzt_replace_open_sans' );
-}elseif(isset($youpzt_optimize_options['google-font']) &&$youpzt_optimize_options['google-font']==1){
-	function youpzt_remove_open_sans() {    
-		wp_deregister_style( 'open-sans' );    
-		wp_register_style( 'open-sans', false );    
-		wp_enqueue_style('open-sans','');    
-	}    
-	add_action( 'init', 'youpzt_remove_open_sans');	
-}elseif(isset($youpzt_optimize_options['google-font'])&& $youpzt_optimize_options['google-font']==3){
-		function youpzt_replace_open_sans(){
-		  wp_deregister_style('open-sans');
-		  wp_register_style( 'open-sans', '//fonts.lug.ustc.edu.cn/css?family=Open+Sans:300italic,400italic,600italic,300,400,600' );
-		  if(is_admin()) wp_enqueue_style( 'open-sans');
+if (isset($youpzt_optimize_options['google-font'])) {
+		if($youpzt_optimize_options['google-font']==1){
+			$replace_google_font_from=false;
+		}elseif($youpzt_optimize_options['google-font']==2){
+			$replace_google_font_from='//fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,300,400,600';
+
+		}elseif($youpzt_optimize_options['google-font']==3){
+				$replace_google_font_from='//fonts.lug.ustc.edu.cn/css?family=Open+Sans:300italic,400italic,600italic,300,400,600';
 		}
+		function youpzt_replace_open_sans(){
+				  wp_deregister_style('open-sans');
+				  wp_register_style( 'open-sans',$replace_google_font_from);
+				  if(is_admin()) wp_enqueue_style( 'open-sans');
+				}
 		add_action( 'init', 'youpzt_replace_open_sans' );
 }
-//更换avatar头像来源
-if (isset($youpzt_optimize_options['gravatar-replace']) && $youpzt_optimize_options['gravatar-replace'] ==3){
 
-	function youpzt_duoshuo_get_avatar($avatar)//多说
-	{
-	  $avatar = str_replace(array("www.gravatar.com", "0.gravatar.com", "1.gravatar.com", "2.gravatar.com"), "gravatar.duoshuo.com", $avatar);
-	  return $avatar;
-	}
-	add_filter("get_avatar", "youpzt_duoshuo_get_avatar", 10, 3);
-}elseif(isset($youpzt_optimize_options['gravatar-replace']) && $youpzt_optimize_options['gravatar-replace'] ==2){
-	function youpzt_get_ssl2_avatar($avatar) {//secure
-	$avatar = preg_replace('/.*\/avatar\/(.*)\?s=([\d]+)&.*/','<img src="https://secure.gravatar.com/avatar/$1?s=$2" class="avatar avatar-$2" height="$2" width="$2">',$avatar);
-	 return $avatar;
-	}
-	 add_filter("get_avatar", "youpzt_get_ssl2_avatar");
-}elseif(isset($youpzt_optimize_options['gravatar-replace']) && $youpzt_optimize_options['gravatar-replace'] ==4){
-	function youpzt_get_qiniu_avatar($avatar) {//qiniu
-	$avatar = str_replace(array("www.gravatar.com", "0.gravatar.com", "1.gravatar.com", "2.gravatar.com"), "cn.gravatar.com", $avatar);
-	  return $avatar;
-	}
-	 add_filter("get_avatar", "youpzt_get_qiniu_avatar");
+//更换avatar头像来源
+if (isset($youpzt_optimize_options['gravatar-replace'])){
+		function youpzt_replace_get_avatar($avatar){
+			if ($youpzt_optimize_options['gravatar-replace'] ==2) {//ssl
+				$avatar = preg_replace('/.*\/avatar\/(.*)\?s=([\d]+)&.*/','<img src="https://secure.gravatar.com/avatar/$1?s=$2" class="avatar avatar-$2" height="$2" width="$2">',$avatar);
+			}elseif ($youpzt_optimize_options['gravatar-replace'] ==3) {//多说
+				$avatar = str_replace(array("www.gravatar.com", "0.gravatar.com", "1.gravatar.com", "2.gravatar.com"), "gravatar.duoshuo.com", $avatar);
+			}elseif($youpzt_optimize_options['gravatar-replace'] ==4){//qiniu
+			  $avatar = str_replace(array("www.gravatar.com", "0.gravatar.com", "1.gravatar.com", "2.gravatar.com"), "cn.gravatar.com", $avatar);
+			}elseif ($youpzt_optimize_options['gravatar-replace'] ==5) {
+				$avatar = str_replace(array("www.gravatar.com", "0.gravatar.com", "1.gravatar.com", "2.gravatar.com"), "cdn.v2ex.com", $avatar);
+			}
+		  return $avatar;
+		}
+	 add_filter("get_avatar", "youpzt_replace_get_avatar");
 }
 
 /**

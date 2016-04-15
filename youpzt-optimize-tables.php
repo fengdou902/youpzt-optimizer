@@ -429,7 +429,7 @@ function wp_clean_up_optimize(){
 				<th><?php _e('记录', 'youpzt'); ?></th>
 				<th><?php _e('数据', 'youpzt'); ?></th>
 				<th><?php _e('索引', 'youpzt'); ?></th>
-				<th><?php _e('Overhead', 'youpzt'); ?></th>
+				<th><?php _e('开销', 'youpzt'); ?></th>
 			</tr>
 		</thead>
 		<?php

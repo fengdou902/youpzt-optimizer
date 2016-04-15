@@ -25,13 +25,15 @@
 					<fieldset>
 						<p>
 						<input name="optimize_options[gravatar-replace]" value="1" id="optimize_options[gravatar-replace]" type='radio' <?php if($youpzt_optimize_options['gravatar-replace']==1){echo 'checked';};?>>
-						<label for="optimize_options[gravatar-replace]">保持原有</label>
+						<label for="optimize_options[gravatar-replace]">原有</label>
 						<input name="optimize_options[gravatar-replace]" value="2" id="optimize_options[gravatar-replace]" type='radio' <?php if($youpzt_optimize_options['gravatar-replace']==2){echo 'checked';};?>>
-						<label for="optimize_options[gravatar-replace]">官方SSL</label>
+						<label for="optimize_options[gravatar-replace]">SSL</label>
 						<input name="optimize_options[gravatar-replace]" value="3" id="optimize_options[gravatar-replace]" type='radio' <?php if($youpzt_optimize_options['gravatar-replace']==3){echo 'checked';};?>>
 						<label for="optimize_options[gravatar-replace]">多说</label>
 						<input name="optimize_options[gravatar-replace]" value="4" id="optimize_options[gravatar-replace]" type='radio' <?php if($youpzt_optimize_options['gravatar-replace']==4){echo 'checked';};?>>
 						<label for="optimize_options[gravatar-replace]">CN</label>
+						<input name="optimize_options[gravatar-replace]" value="5" id="optimize_options[gravatar-replace]" type='radio' <?php if($youpzt_optimize_options['gravatar-replace']==5){echo 'checked';};?>>
+						<label for="optimize_options[gravatar-replace]">v2ex</label>
 						</p>
 					</fieldset>
 				</td>
@@ -143,7 +145,7 @@
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><?php _e('启用文章特色图像功能', 'optimize_switch'); ?><span class="info"><abbr title="如果当前主题没有特色图像功能，可开启此项。可作缩略图展示" rel="tooltip">说明</abbr></span></th>
+				<th scope="row"><?php _e('启用文章特色图像功能', 'optimize_switch'); ?><span class="info"><abbr title="WordPress默认关闭特色图像功能，可开启此项，可作文章缩略图展示" rel="tooltip">说明</abbr></span></th>
 				<td>
 					<fieldset>
 						<p><input name="optimize_options[thumbnails]" class='tgl tgl-skewed' id="optimize_options[thumbnails]" type='checkbox' <?php if($youpzt_optimize_options['thumbnails']==true){echo 'checked';};?>>
@@ -157,6 +159,15 @@
 					<fieldset>
 						<p><input name="optimize_options[open_links]" class='tgl tgl-skewed' id="optimize_options[open_links]" type='checkbox' <?php if($youpzt_optimize_options['open_links']==true){echo 'checked';};?>>
 						<label class='tgl-btn' data-tg-off="关闭" data-tg-on="开启" for="optimize_options[open_links]"></label></p>
+					</fieldset>
+				</td>
+			</tr>
+						<tr valign="top">
+				<th scope="row"><?php _e('彻底禁止WordPress缩略图', 'optimize_switch'); ?><span class="info"><abbr title="使用第三方七牛或又拍云自带缩略图，可关闭wordpress的缩略图裁剪功能，减小资源" rel="tooltip">说明</abbr></span></th>
+				<td>
+					<fieldset>
+						<p><input name="optimize_options[close_thumb_size]" class='tgl tgl-skewed' id="optimize_options[close_thumb_size]" type='checkbox' <?php if($youpzt_optimize_options['close_thumb_size']==true){echo 'checked';};?>>
+						<label class='tgl-btn' data-tg-off="关闭" data-tg-on="开启" for="optimize_options[close_thumb_size]"></label></p>
 					</fieldset>
 				</td>
 			</tr>
