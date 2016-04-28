@@ -111,11 +111,13 @@ if(is_admin()){
 if (isset($youpzt_optimize_options['google-font'])) {
 		if($youpzt_optimize_options['google-font']==1){
 			$replace_google_font_from=false;
-		}elseif($youpzt_optimize_options['google-font']==2){
+		}elseif($youpzt_optimize_options['google-font']==2){//360
 			$replace_google_font_from='//fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,300,400,600';
 
 		}elseif($youpzt_optimize_options['google-font']==3){
 				$replace_google_font_from='//fonts.lug.ustc.edu.cn/css?family=Open+Sans:300italic,400italic,600italic,300,400,600';
+		}elseif($youpzt_optimize_options['google-font']==4){//微锐
+				$replace_google_font_from='//fonts.weirui.org/css?family=Open+Sans:300italic,400italic,600italic,300,400,600';
 		}
 		function youpzt_replace_open_sans(){
 				  wp_deregister_style('open-sans');
@@ -128,13 +130,14 @@ if (isset($youpzt_optimize_options['google-font'])) {
 //更换avatar头像来源
 if (isset($youpzt_optimize_options['gravatar-replace'])){
 		function youpzt_replace_get_avatar($avatar){
+			$youpzt_optimize_options =get_option('optimize_options');//开关
 			if ($youpzt_optimize_options['gravatar-replace'] ==2) {//ssl
 				$avatar = preg_replace('/.*\/avatar\/(.*)\?s=([\d]+)&.*/','<img src="https://secure.gravatar.com/avatar/$1?s=$2" class="avatar avatar-$2" height="$2" width="$2">',$avatar);
 			}elseif ($youpzt_optimize_options['gravatar-replace'] ==3) {//多说
 				$avatar = str_replace(array("www.gravatar.com", "0.gravatar.com", "1.gravatar.com", "2.gravatar.com"), "gravatar.duoshuo.com", $avatar);
 			}elseif($youpzt_optimize_options['gravatar-replace'] ==4){//qiniu
 			  $avatar = str_replace(array("www.gravatar.com", "0.gravatar.com", "1.gravatar.com", "2.gravatar.com"), "cn.gravatar.com", $avatar);
-			}elseif ($youpzt_optimize_options['gravatar-replace'] ==5) {
+			}elseif ($youpzt_optimize_options['gravatar-replace'] ==5) {//v2ex
 				$avatar = str_replace(array("www.gravatar.com", "0.gravatar.com", "1.gravatar.com", "2.gravatar.com"), "cdn.v2ex.com", $avatar);
 			}
 		  return $avatar;

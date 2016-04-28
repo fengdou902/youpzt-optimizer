@@ -57,6 +57,7 @@
 						<input name="optimize_options[google-font]" value="1" id="optimize_options[google-font]" type='radio' <?php if($youpzt_optimize_options['google-font']==1){echo 'checked';};?>><label for="optimize_options[google-font]">禁用</label>
 						<input name="optimize_options[google-font]" value="2" id="optimize_options[google-font]" type='radio' <?php if($youpzt_optimize_options['google-font']==2){echo 'checked';};?>><label for="optimize_options[google-font]">360</label>
 						<input name="optimize_options[google-font]" value="3" id="optimize_options[google-font]" type='radio' <?php if($youpzt_optimize_options['google-font']==3){echo 'checked';};?>><label for="optimize_options[google-font]">中科大</label>
+						<input name="optimize_options[google-font]" value="4" id="optimize_options[google-font]" type='radio' <?php if($youpzt_optimize_options['google-font']==4){echo 'checked';};?>><label for="optimize_options[google-font]">微锐</label>
 						</p>
 					</fieldset>
 				</td>
@@ -163,7 +164,7 @@
 				</td>
 			</tr>
 						<tr valign="top">
-				<th scope="row"><?php _e('彻底禁止WordPress缩略图', 'optimize_switch'); ?><span class="info"><abbr title="使用第三方七牛或又拍云自带缩略图，可关闭wordpress的缩略图裁剪功能，减小资源" rel="tooltip">说明</abbr></span></th>
+				<th scope="row"><?php _e('彻底禁止WordPress缩略图', 'optimize_switch'); ?><span class="info"><abbr title="使用第三方七牛或又拍云自带缩略图，可关闭wordpress的缩略图裁剪功能，减小资源占用" rel="tooltip">说明</abbr></span></th>
 				<td>
 					<fieldset>
 						<p><input name="optimize_options[close_thumb_size]" class='tgl tgl-skewed' id="optimize_options[close_thumb_size]" type='checkbox' <?php if($youpzt_optimize_options['close_thumb_size']==true){echo 'checked';};?>>
