@@ -3,7 +3,7 @@
 Plugin Name:youpzt-optimizer
 Plugin URI: http://www.youpzt.com/267.html
 Description:WordPress网站优化工具是优品主题建站出品一款包括各类系统开关优化和数据库清理为一体的网站优化插件。
-Version: 1.3.2
+Version: 1.3.3
 Author: 优品主题
 Author URI: http://www.youpzt.com/
 Text Domain:WordPress全面网站优化
