@@ -109,17 +109,17 @@ if(is_admin()){
 }
 //replace google fonts
 if (isset($youpzt_optimize_options['google-font'])) {
-		if($youpzt_optimize_options['google-font']==1){
-			$replace_google_font_from=false;
-		}elseif($youpzt_optimize_options['google-font']==2){//360
-			$replace_google_font_from='//fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,300,400,600';
 
-		}elseif($youpzt_optimize_options['google-font']==3){
-				$replace_google_font_from='//fonts.lug.ustc.edu.cn/css?family=Open+Sans:300italic,400italic,600italic,300,400,600';
-		}elseif($youpzt_optimize_options['google-font']==4){//微锐
-				$replace_google_font_from='//fonts.weirui.org/css?family=Open+Sans:300italic,400italic,600italic,300,400,600';
-		}
 		function youpzt_replace_open_sans(){
+			$youpzt_optimize_options =get_option('optimize_options');//开关
+				if($youpzt_optimize_options['google-font']==1){
+					$replace_google_font_from=false;
+				}elseif($youpzt_optimize_options['google-font']==2){
+					$replace_google_font_from='//fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,300,400,600';
+
+				}elseif($youpzt_optimize_options['google-font']==3){
+						$replace_google_font_from='//fonts.lug.ustc.edu.cn/css?family=Open+Sans:300italic,400italic,600italic,300,400,600';
+				}
 				  wp_deregister_style('open-sans');
 				  wp_register_style( 'open-sans',$replace_google_font_from);
 				  if(is_admin()) wp_enqueue_style( 'open-sans');
