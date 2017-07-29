@@ -1,5 +1,5 @@
 
-#WordPress优化工具youpzt-optimizer
+# WordPress优化工具youpzt-optimizer
 * 作者:ZhaoJunfeng  
 * 官网: http://www.youpzt.com  
 * WordPress最低版本: 3.0.1  
@@ -46,7 +46,7 @@
 * 控制板订阅缓存
 
 
-###安装
+### 安装
 
 1. 上传插件目录 "/wp-content/plugins/" 的wordpress站点路径
 2. 在wordpress中通过插件菜单激活这个插件,
@@ -58,7 +58,7 @@
 2. 然后在设置页面"加速开关"，"数据库优化"，"功能设置"进行网站优化设置即可。
 3. 卸载也同样方便，可设置卸载插件同时删除配置数据！
 
-###常见问答
+### 常见问答
 
 * 加速开关可以对网站速度加速吗?
 
