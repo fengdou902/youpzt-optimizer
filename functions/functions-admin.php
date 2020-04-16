@@ -28,7 +28,7 @@ function youpzt_optimize_showMessage($message, $errormsg = false)
 }
 //检查更新
 function check_youpzt_plugins_optimize(){
-	$check_url="http://www.youpzt.com/wp-content/update_check_youpzt_json/youpzt-optimizer.json";
+	$check_url="http://www.eacoophp.com/wp-content/update_check_youpzt_json/youpzt-optimizer.json";
 	//$check_url=base64_decode($check_url);
 	$check_content=geturl_content($check_url);
 	$check_obj=json_decode($check_content);
@@ -44,6 +44,11 @@ function geturl_content($url) {
 			@curl_setopt($ch, CURLOPT_URL, $url);
 			@curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			@curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			@curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        		@curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+			@curl_setopt($ch, CURLOPT_TIMEOUT_MS, 500);
+			@curl_setopt($ch, CURLOPT_NOSIGNAL, 1);
+			@curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, 500);
 			@curl_setopt($ch, CURLOPT_HEADER, 0);
 			$content = @curl_exec($ch);
 			@curl_close($ch);
